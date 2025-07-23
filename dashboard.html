@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Krishnova AI</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="gradient-header py-16">
+      <div class="container flex flex-col items-center gap-8 text-center">
+        <h1 class="title-lg">Krishnova AI</h1>
+        <p class="subtitle">AI Text-to-Video Generator</p>
+      </div>
+    </header>
+
+    <main class="container flex flex-col items-center gap-32 py-32" id="mainContent">
+      <!-- Input Section -->
+      <section class="card w-full max-w-2xl fade-in">
+        <div class="card__body flex flex-col gap-24">
+          <label for="promptInput" class="form-label text-xl font-semibold">Describe the video you want to create:</label>
+          <textarea
+            id="promptInput"
+            rows="6"
+            minlength="10"
+            placeholder="Describe the video you want to create... (e.g., 'A woman tapping on a new form while working on her laptop in a modern office')"
+            class="form-control"
+            style="resize: vertical; min-height: 120px;"
+          ></textarea>
+          <div class="flex justify-between items-center">
+            <small id="charCounter" class="text-sm text-secondary">0 / 500</small>
+            <button id="generateBtn" class="btn btn--primary btn--lg" type="button" disabled>
+              Generate Video
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Progress Section -->
+      <section id="progressSection" class="hidden w-full max-w-2xl">
+        <div class="card">
+          <div class="card__body flex flex-col gap-24">
+            <div class="flex items-center gap-12">
+              <div class="spinner" aria-hidden="true"></div>
+              <p id="progressText" class="text-lg font-medium">Starting…</p>
+            </div>
+            <div class="w-full h-16 bg-secondary rounded-full overflow-hidden">
+              <div id="progressBar" class="h-full w-0 bg-primary"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Video Preview Section -->
+      <section id="videoSection" class="hidden w-full max-w-3xl">
+        <div class="card">
+          <div class="card__body flex flex-col gap-24">
+            <h2 id="videoTitle" class="text-2xl font-semibold">Your Generated Video</h2>
+            <video id="videoPlayer" controls preload="metadata" class="w-full rounded-md shadow-md" ></video>
+            <div class="flex flex-wrap gap-12">
+              <a id="downloadBtn" class="btn btn--secondary" download>Download Video</a>
+              <button id="shareBtn" class="btn btn--outline" type="button">Share Link</button>
+              <button id="newVideoBtn" class="btn btn--primary" type="button">Generate Another Video</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features Section -->
+      <section class="w-full max-w-4xl fade-in">
+        <h3 class="text-center text-2xl font-semibold mb-16">Key Features</h3>
+        <ul class="grid gap-16 md:grid-cols-2 lg:grid-cols-3 list-none p-0 m-0">
+          <li class="feature-item">AI-Powered Script Generation</li>
+          <li class="feature-item">Real Video Content from Pexels</li>
+          <li class="feature-item">Custom Video Composition</li>
+          <li class="feature-item">High-Quality Output</li>
+          <li class="feature-item">Fast Processing with Groq AI</li>
+          <li class="feature-item">Download & Share Options</li>
+        </ul>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-16 text-center text-sm bg-surface border-t" style="border-color: var(--color-border); color: var(--color-text-secondary);">
+      Built with ❤️ using Krishnova AI
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>

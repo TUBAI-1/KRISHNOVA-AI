@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krishnova - Sign In / Sign Up</title>
+    <link rel="stylesheet" href="sci-fi.css">
+    <style>
+        body {
+            font-family: 'Orbitron', sans-serif; /* Sci-fi font */
+            background: linear-gradient(to right, #0f0c29, #302b63, #24243e); /* Dark sci-fi gradient */
+            color: #00ffcc; /* Neon green text */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+        }
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="100%" height="100%" fill="none"/><path d="M0 0L100 100M100 0L0 100" stroke="%2300ffcc" stroke-width="0.5" opacity="0.1"/></svg>') repeat;
+            opacity: 0.3;
+            pointer-events: none;
+            animation: background-pan 60s linear infinite;
+        }
+        @keyframes background-pan {
+            from { background-position: 0% 0%; }
+            to { background-position: 100% 100%; }
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(0, 255, 204, 0.5);
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            border: 2px solid #00ffcc;
+            position: relative;
+            z-index: 1;
+            animation: neon-border 1.5s infinite alternate;
+        }
+        @keyframes neon-border {
+            from { box-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc, 0 0 30px #00ffcc; }
+            to { box-shadow: 0 0 20px #00ffcc, 0 0 30px #00ffcc, 0 0 40px #00ffcc; }
+        }
+        h1 {
+            color: #00ffcc;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 0 0 10px #00ffcc;
+        }
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #00ccff; /* Light blue for labels */
+            font-size: 1.1em;
+        }
+        .form-group input {
+            width: calc(100% - 20px);
+            padding: 12px;
+            border: 1px solid #00ccff;
+            border-radius: 8px;
+            background-color: rgba(0, 50, 70, 0.5);
+            color: #fff;
+            font-size: 1em;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .form-group input:focus {
+            border-color: #00ffcc;
+            box-shadow: 0 0 10px rgba(0, 255, 204, 0.7);
+            outline: none;
+        }
+        .btn {
+            background-color: #00ffcc;
+            color: #0f0c29;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.2em;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .btn:hover {
+            background-color: #00cc99;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 255, 204, 0.4);
+        }
+        .switch-form {
+            margin-top: 20px;
+            color: #ccc;
+        }
+        .switch-form a {
+            color: #00ffcc;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        .switch-form a:hover {
+            color: #00cc99;
+        }
+        #faceAuthSection {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            border: 2px dashed #00ffcc;
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        #faceAuthSection p {
+            font-size: 1.3em;
+            color: #00ccff;
+            margin-bottom: 15px;
+        }
+        #faceAuthSection .spinner {
+            border: 4px solid rgba(0, 255, 204, 0.3);
+            border-top: 4px solid #00ffcc;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="intro-section">
+        <h1>Welcome to Krishnova</h1>
+        <p>Your ultimate AI-powered text-to-video generation platform.</p>
+        <div class="features-list">
+            <h2>Key Features</h2>
+            <ul>
+                <li><strong>AI-Powered Script Generation:</strong> Transform your ideas into compelling video scripts instantly.</li>
+                <li><strong>Real Video Content from Pexels:</strong> Access a vast library of high-quality, real video footage.</li>
+                <li><strong>Custom Video Composition:</strong> Seamlessly combine AI-generated scripts with relevant video clips.</li>
+                <li><strong>High-Quality Output:</strong> Produce professional-grade videos with stunning visuals and audio.</li>
+                <li><strong>Fast Processing with Groq AI:</strong> Experience rapid video generation powered by advanced AI.</li>
+                <li><strong>Download & Share Options:</strong> Easily download your creations and share them across platforms.</li>
+            </ul>
+        </div>
+        <button id="proceed-to-auth" class="btn">Proceed to Sign In / Sign Up</button>
+    </div>
+
+    <div class="container auth-container hidden">
+        <h1 id="formTitle">Krishnova</h1>
+        
+        <div id="authForm">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Enter your username">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password">
+            </div>
+            <button class="btn" id="submitBtn">Sign In</button>
+            <div class="switch-form">
+                Don't have an account? <a href="#" id="signUpLink">Sign Up</a>
+            </div>
+        </div>
+
+        <div id="faceAuthSection" class="hidden">
+            <p>Initiating Face Authentication...</p>
+            <div class="spinner"></div>
+            <p>Please look at the camera.</p>
+        </div>
+    </div>
+
+    <button id="scrollToTopBtn" title="Go to top">^</button>
+    <button id="scrollDownBtn" title="Scroll Down">v</button>
+
+    <script>
+        const proceedButton = document.getElementById('proceed-to-auth');
+        const introSection = document.querySelector('.intro-section');
+        const authContainer = document.querySelector('.auth-container');
+        const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+        const scrollDownBtn = document.getElementById('scrollDownBtn');
+
+        // Function to check scroll position and show/hide buttons
+        function handleScroll() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scrollToTopBtn.style.display = "block";
+            } else {
+                scrollToTopBtn.style.display = "none";
+            }
+
+            // Show scrollDownBtn if there's more content below
+            if ((window.innerHeight + window.scrollY) < document.body.offsetHeight) {
+                scrollDownBtn.style.display = "block";
+            } else {
+                scrollDownBtn.style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        scrollToTopBtn.addEventListener('click', () => {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        });
+
+        // When the user clicks on the scroll down button, scroll to the bottom of the document
+        scrollDownBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: 'smooth'
+            });
+        });
+
+        // Add scroll event listener
+        window.addEventListener('scroll', handleScroll);
+
+        // Initial check on page load
+        handleScroll();
+
+        proceedButton.addEventListener('click', () => {
+            introSection.classList.add('hidden');
+            authContainer.classList.remove('hidden');
+        });
+
+        // When the user scrolls, show/hide the scroll-to-top button
+        window.onscroll = function() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scrollToTopBtn.style.display = "block";
+            } else {
+                scrollToTopBtn.style.display = "none";
+            }
+
+            // Show/hide scroll-down button based on scroll position
+            if ((window.innerHeight + window.scrollY) < document.body.offsetHeight) {
+                scrollDownBtn.style.display = "block";
+            } else {
+                scrollDownBtn.style.display = "none";
+            }
+        };
+
+        // When the user clicks on the scroll-to-top button, scroll to the top of the document
+        scrollToTopBtn.addEventListener('click', () => {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        });
+
+        // When the user clicks on the scroll-down button, scroll to the bottom of the document
+        scrollDownBtn.addEventListener('click', () => {
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        });
+
+        const formTitle = document.getElementById('formTitle');
+        const authForm = document.getElementById('authForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const signUpLink = document.getElementById('signUpLink');
+        const faceAuthSection = document.getElementById('faceAuthSection');
+
+        let isSignIn = true;
+
+        proceedButton.addEventListener('click', () => {
+            introSection.classList.add('hidden');
+            authContainer.classList.remove('hidden');
+        });
+
+        signUpLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            isSignIn = !isSignIn;
+            if (isSignIn) {
+                formTitle.textContent = 'Krishnova';
+                submitBtn.textContent = 'Sign In';
+                signUpLink.textContent = 'Sign Up';
+                document.querySelector('.switch-form').innerHTML = `Don't have an account? <a href="#" id="signUpLink">Sign Up</a>`;
+                document.getElementById('signUpLink').addEventListener('click', (e) => {
+                    e.preventDefault();
+                    isSignIn = !isSignIn;
+                    updateForm();
+                });
+            } else {
+                formTitle.textContent = 'Krishnova';
+                submitBtn.textContent = 'Sign Up';
+                signUpLink.textContent = 'Sign In';
+                document.querySelector('.switch-form').innerHTML = `Already have an account? <a href="#" id="signUpLink">Sign In</a>`;
+                document.getElementById('signUpLink').addEventListener('click', (e) => {
+                    e.preventDefault();
+                    isSignIn = !isSignIn;
+                    updateForm();
+                });
+            }
+        });
+
+        submitBtn.addEventListener('click', () => {
+            authForm.classList.add('hidden');
+            faceAuthSection.classList.remove('hidden');
+
+            setTimeout(() => {
+                window.location.href = 'dashboard.html';
+            }, 3000); // 3-second delay for face authentication demo
+        });
+
+        function updateForm() {
+            if (isSignIn) {
+                formTitle.textContent = 'Krishnova';
+                submitBtn.textContent = 'Sign In';
+                document.querySelector('.switch-form').innerHTML = `Don't have an account? <a href="#" id="signUpLink">Sign Up</a>`;
+            } else {
+                formTitle.textContent = 'Krishnova';
+                submitBtn.textContent = 'Sign Up';
+                document.querySelector('.switch-form').innerHTML = `Already have an account? <a href="#" id="signUpLink">Sign In</a>`;
+            }
+            document.getElementById('signUpLink').addEventListener('click', (e) => {
+                e.preventDefault();
+                isSignIn = !isSignIn;
+                updateForm();
+            });
+        }
+
+        // Initial form setup
+        updateForm();
+    </script>
+</body>
+</html>
